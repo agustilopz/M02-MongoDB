@@ -3,7 +3,6 @@
 /* 1. Busqueu els estudiants de gènere masculí */
 db.students.find({gender: "H"})
 
-
 /* 2. Busqueu el estudiants de gènere femení */
 db.students.find({gender: "M"})
 
@@ -22,10 +21,8 @@ db.students.find({gender: "H", birth_year: {$lt : 1990}})
 /* 7. Busqueu els estudiants de gènere femení nascuts abans del l’any 90 */
 db.students.find({gender: "M", birth_year: {$lt : 1990}})
 
-
 /* 8. Busqueu els estudiants nascuts a la dècada dels 80 i de gènere femení */
 db.students.find({gender: "M", birth_year: {$gte : 1980, $lte : 1989}})
-
 
 /* 9. Busqueu els estudiants de gènere masculí nascuts a la dècada dels 80 */
 db.students.find({gender: "H", birth_year: {$gte : 1980, $lte : 1989}})
@@ -33,10 +30,8 @@ db.students.find({gender: "H", birth_year: {$gte : 1980, $lte : 1989}})
 /* 10. Busqueu els estudiants de gènere femení nascuts a la dècada dels 80 */
 db.students.find({gender: "M", birth_year: {$gte : 1980, $lte : 1989}})
 
-
 /* 11. Busqueu els estudiants que no han nascut a l’han 1985 */
 db.students.find({birth_year: {$ne : 1985}})
-
 
 /* 12. Busqueu els estudiants nascuts als anys 1970, 1980 o 1990 */
 db.students.find({birth_year: { $in : [1970, 1980, 1990] } } )
@@ -82,7 +77,6 @@ db.students.find(
 {email: /.net$/}
 )
 
-
 /* 20. Busqueu els estudiants que tinguin un nom que comenci per vocal */
 db.students.find(
 {firstname: /^[AEIOU]/i}
@@ -93,8 +87,6 @@ db.students.find(
 db.students.find({
   firstname: { $regex: "^[AEIOU]", $options: "i" }
 })
-
-
 
 /* 21. Busqueu els estudiants que tinguin un nom més llarg de 13 caràcters */
 db.students.find(
