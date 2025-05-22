@@ -23,10 +23,8 @@ actors : [
 "John Travolta",
 "Uma Thurman",
 ]
-
 }
 )
-
 
 db.movieDetails.insertMany(
 [
@@ -74,7 +72,6 @@ db.movieDetails.insertMany(
     "synopsis": "A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn."
   }
 ]
-
 )
 
 db.movieDetails.find({title: "Inglorious Bastards"})
@@ -107,11 +104,26 @@ year : { $gte: 1990, $lte : 1999 }
 )
 
 // f. Mostra totes les pel·lícules que es van realitzar abans del any 2000 i després de l’any 2010.
-
+db.movieDetails.find({
+$or : [
+{ year : { $lt: 2000 } },
+{ year :  { $gt: 2010 } }
+]
+})
 
 // g. Mostra totes les pel·lícules que el segon país del camp "countries" sigui Spain.
+db.movieDetails.find({
+"countries.1" : "Spain"
+})
 
 // h. Mostra totes les pel·lícules que hagin guanyat més de 100 premis (El camp wins del camp awards).
+db.movieDetails.find({
+"awards.wins" : {$gt: 100}
+ })
+
 
 // i. Mostra totes les pel·lícules que tinguin 10 guionistes (writers).
+db.movieDetails.find({
+writers: {$size: 10}
+})
 
