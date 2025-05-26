@@ -8,5 +8,12 @@
       <jdbc-url>mongodb://localhost:27017/itb</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="mongo@atlas" uuid="1ca036ca-9ac2-4ca8-b609-76c0a3e027c6">
+      <driver-ref>mongo</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb+srv://cluster0.ugsal0g.mongodb.net</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
