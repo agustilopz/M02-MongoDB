@@ -168,17 +168,41 @@ db.people.updateOne(
 /* ------------------------------ EXERCICI 4. ELIMINACIONS ------------------------------ */
 /* a) Elimina totes les persones que el nom continguin l’expressió regular "berl" . Has de
 tenir en compte el case sensitive. */
+db.people.deleteMany({
+name: /berl/i
+})
+
+db.people.find({name: /berl/i})
 
 /* b) Elimina el camp «latitude» de tots els documents de la col·lecció. */
+db.people.updateMany(
+{},
+{$unset: {latitude: ""}}
+)
 
 /* c) Elimina el tag "enim" del camp "tags" de la persona anomenda "Aubrey Calhoun". */
+db.people.updateOne(
+{name: "Aubrey Calhoun"},
+{$pull: { tags: "enim" }}
+)
+
+//db.people.find({name: "Aubrey Calhoun"})
 
 /* d) Elimina l'últim element del camp tags de la persona anomenada "Caroline Webster". */
+db.people.updateOne(
+{name: "Caroline Webster"},
+{$pop: { tags: 1 }}
+)
 
+//db.people.find({name: "Caroline Webster"})
 
 /* ------------------------------- EXERCICI 5. AGREGACIONS ------------------------------- */
 /* a) Mostra una llista amb el nom de tots els amics de les persones. Utilitza l’estructura
 aggregate. */
+db.people.aggregate([
+
+])
+
 
 /* b) Cada persona té un array d’etiquetes (tags). Mostra quantes vegades apareix cada
 etiqueta. Utilitza l'estructura aggregate. */
