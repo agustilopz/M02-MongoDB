@@ -13,7 +13,11 @@ authors: {$size: "$authors"}
 db.books.find()
 
 // Solució:
-db.books.aggregate([{ "$project": {_id:"$title","num_autors": { "$size": "$authors" }}}, {$match: {"num_autors":{$gte:5}}}]);
+db.books.aggregate([
+{ "$project": {
+_id:"$title",
+"num_autors": { "$size": "$authors" }}},
+{$match: {"num_autors":{$gte:5}}}]);
 
 /* 2) De la col·lecció «books» mostra els llibres ordenats per número d’autors de forma descendent.
 Primer els llibres amb més autors i al final els llibres amb menys autors. */
