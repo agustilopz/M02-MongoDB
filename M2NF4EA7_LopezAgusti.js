@@ -209,6 +209,10 @@ db.people.aggregate([
   }
 ])
 
+// Solució:
+db.people.aggregate([{$unwind: "$friends"}, {$group: {_id:
+{NomAmic:"$friends.name"}}}]);
+
 
 /* b) Cada persona té un array d’etiquetes (tags). Mostra quantes vegades apareix cada
 etiqueta. Utilitza l'estructura aggregate. */
@@ -221,6 +225,10 @@ db.people.aggregate([
     }
   }
 ])
+
+// Solució:
+db.getCollection('people').aggregate([{$unwind:"$tags"},{$group:
+{_id:"$tags",num_etiquetes:{$sum:1} } }]);
 
 /* c) Calcula la mitjana d’edat del homes i la mitjana d’edat de les dones. Utilitza l’estructura
 aggregate, i utilitza les funcions $group i $avg. Mostra el gènere (camp "gender") i la
@@ -241,6 +249,18 @@ db.people.aggregate([
   }
 ])
 
+// Solució:
+db.people.aggregate({
+$group: {
+_id: {
+gènere: "$gender"
+},
+mitjanaEdat: {
+$avg: "$age"
+}
+}
+});
+
 /* d) Mostra totes les persones que tinguin 7 o més etiquetes (tags). Utilitza l’estructura
 aggregate. Utilitza les funcions $project i $match, i mostra només el nom de la persona i
 número d’etiquetes. */
@@ -258,4 +278,15 @@ db.people.aggregate([
     }
   }
 ])
+
+// Solució:
+db.getCollection('people').aggregate([{ "$project": {nom:"$name",
+_id:0,"numero_etiquetes": { "$size":"$tags" }}}, {$match: {"numero_etiquetes":
+{$gte:7}}}]);
+
+ // O també:
+
+db.getCollection('people').aggregate([{ "$project": {name:1, _id:0,"mida": { "$size":
+"$tags" }}}, {$match: {"mida":{$gte:7}}}]);
+
 
