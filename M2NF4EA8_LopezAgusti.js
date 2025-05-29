@@ -82,7 +82,7 @@ $unwind: "$grades"
 },
 {
 $group: {
-_id: "$grades.score",
+_id: "$grades.score"
 vegades: {$sum: 1}
 }
 },
